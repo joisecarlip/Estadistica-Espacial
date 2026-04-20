@@ -1,0 +1,451 @@
+/* ═══════════════════════════════════════════
+   style.css — Portafolio Académico
+   Jose Carlos Iquise Pari
+═══════════════════════════════════════════ */
+
+/* ─── Variables de color y espaciado ─── */
+:root {
+  --navy:   #0a1628;
+  --blue:   #1a4fa0;
+  --sky:    #2d7dd2;
+  --accent: #f0a500;
+  --light:  #f4f7fb;
+  --muted:  #8899aa;
+  --card-bg:#ffffff;
+  --radius: 16px;
+}
+
+/* ─── Base ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--light);
+  color: var(--navy);
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', serif;
+}
+
+/* ─── Scrollbar personalizada ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--light); }
+::-webkit-scrollbar-thumb { background: var(--sky); border-radius: 3px; }
+
+/* ─── Navbar ─── */
+.navbar {
+  background: var(--navy);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 24px rgba(10,22,40,.4);
+}
+
+.navbar-brand {
+  font-family: 'Montserrat', serif;
+  font-size: 1.15rem;
+  color: #fff !important;
+  letter-spacing: .02em;
+}
+
+.navbar-brand span { color: var(--accent); }
+
+.navbar-toggler { border-color: rgba(255,255,255,.3); }
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav-link {
+  color: rgba(255,255,255,.75) !important;
+  font-weight: 500;
+  font-size: .92rem;
+  transition: color .2s;
+  padding: .4rem .9rem !important;
+}
+.nav-link:hover, .nav-link.active { color: var(--accent) !important; }
+
+/* ─── Sección Hero (inicio) ─── */
+#inicio {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--navy) 55%, var(--blue) 100%);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0 4rem;
+}
+
+/* Cuadrícula decorativa de fondo */
+#inicio::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Círculo decorativo en la esquina */
+#inicio::after {
+  content: '';
+  position: absolute;
+  right: -160px;
+  bottom: -160px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  border: 2px solid rgba(240,165,0,.18);
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(240,165,0,.15);
+  color: var(--accent);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .35rem .9rem;
+  border-radius: 50px;
+  border: 1px solid rgba(240,165,0,.3);
+  margin-bottom: 1.2rem;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+.hero-title span { color: var(--accent); }
+
+.hero-description {
+  color: rgba(255,255,255,.72);
+  font-size: 1.1rem;
+  font-weight: 300;
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Círculo con iniciales del estudiante */
+.hero-avatar {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sky), var(--blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #fff;
+  border: 5px solid rgba(255,255,255,.15);
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Fila de estadísticas dentro del hero */
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2.4rem;
+}
+
+.stat-item { text-align: left; }
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-label {
+  font-size: .8rem;
+  color: rgba(255,255,255,.55);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* ─── Estilos compartidos de secciones ─── */
+section { padding: 80px 0; }
+
+.section-label {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: .5rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2rem);
+  color: var(--navy);
+  margin-bottom: .5rem;
+}
+
+.section-divider {
+  width: 48px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 0 0 2.5rem 0;
+}
+
+/* ─── Sección Sobre mí ─── */
+#sobre-mi { background: #fff; }
+
+.about-card {
+  background: var(--light);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: #fff;
+  border: 1.5px solid #e0e8f4;
+  border-radius: 50px;
+  padding: .4rem 1rem;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--blue);
+  margin: .25rem;
+}
+
+/* ─── Filtros de categoría del portafolio ─── */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: #fff;
+  border: 1.5px solid #dde4ef;
+  border-radius: 50px;
+  padding: .45rem 1.2rem;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+/* ─── Tarjetas del portafolio ─── */
+.portfolio-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1.5px solid #e8eef6;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+  height: 100%;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(26,79,160,.12);
+}
+
+/* Barra de color en la parte superior de cada tarjeta */
+.card-color-bar {
+  height: 5px;
+  width: 100%;
+}
+
+/* Ícono cuadrado dentro de la tarjeta */
+.card-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Etiqueta del tipo de archivo */
+.card-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: .25rem .7rem;
+  border-radius: 50px;
+}
+
+/* Colores según tipo de archivo */
+.type-pdf    { background: #fff0f0; color: #c0392b; }
+.type-zip    { background: #fff8e1; color: #e67e00; }
+.type-r      { background: #e8f4fd; color: #1a6fa0; }
+.type-imagen { background: #f0f9f0; color: #1a7a3a; }
+
+/* Barras superiores de color por tipo */
+.bar-pdf    { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+.bar-zip    { background: linear-gradient(90deg, #f39c12, #e67e00); }
+.bar-r      { background: linear-gradient(90deg, #2d7dd2, #1a4fa0); }
+.bar-imagen { background: linear-gradient(90deg, #27ae60, #1a7a3a); }
+
+/* Colores de íconos por tipo */
+.icon-pdf    { background: #fff0f0; color: #c0392b; }
+.icon-zip    { background: #fff8e1; color: #e67e00; }
+.icon-r      { background: #e8f4fd; color: #1a6fa0; }
+.icon-imagen { background: #f0f9f0; color: #1a7a3a; }
+
+/* Botón "Ver archivo" */
+.btn-view {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: .48rem 1rem;
+  font-size: .85rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  transition: background .2s;
+}
+.btn-view:hover { background: var(--navy); color: #fff; }
+
+/* Botón "Descargar" */
+.btn-download {
+  background: transparent;
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
+  border-radius: 10px;
+  padding: .45rem 1rem;
+  font-size: .85rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  transition: all .2s;
+}
+.btn-download:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ─── Sección Contacto ─── */
+#contacto { background: #fff; }
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: var(--light);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--blue);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #efefef;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#inicio {
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+/* ─── Footer ─── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,.6);
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: .88rem;
+}
+
+footer strong { color: #fff; }
+footer span.sep { margin: 0 .6rem; opacity: .4; }
+
+/* ─── Botón volver arriba ─── */
+#scrollTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, background .2s;
+  z-index: 999;
+}
+#scrollTop.visible { opacity: 1; pointer-events: all; }
+#scrollTop:hover { background: var(--navy); }
+
+
+/* ─── Animaciones de entrada ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp .7s ease both; }
+.delay-1 { animation-delay: .15s; }
+.delay-2 { animation-delay: .3s; }
+.delay-3 { animation-delay: .45s; }
+.delay-4 { animation-delay: .6s; }
+
+/* ─── Ajustes para pantallas pequeñas ─── */
+@media (max-width: 768px) {
+  .hero-avatar { width: 160px; height: 160px; font-size: 3.2rem; }
+  #inicio { text-align: center; }
+  .hero-description { margin: 0 auto 2rem; }
+  .hero-stats { justify-content: center; }
+  .section-divider { margin: 0 auto 2.5rem; }
+}
