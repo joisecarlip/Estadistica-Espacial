@@ -109,6 +109,7 @@ function loadScript(src) {
     });
 }
 
+hacerResponsiveElLibro();
 // Abrir el visor PDF
 window.abrirVisor = async function(pdfUrl) {
     currentPdfUrl = pdfUrl;
@@ -255,3 +256,46 @@ window.abrirNuevaPestana = function() {
 
 // Cerrar al hacer clic fuera
 modalHTML.addEventListener("click", e => { if (e.target === modalHTML) cerrarHTML(); });
+
+/* ==========================================
+   AJUSTE RESPONSIVO DEL FLIPBOOK
+   ========================================== */
+function hacerResponsiveElLibro() {
+  const anchoPantalla = window.innerWidth;
+  const zoomWrap = document.getElementById('flipZoomWrap');
+  const flipBook = document.getElementById('flipBook');
+  
+  if (!zoomWrap || !flipBook) return;
+
+  // -- OPCIÓN A: Si usas la librería Turn.js (con jQuery) --
+  if (window.jQuery && $(flipBook).turn && $(flipBook).turn('is')) {
+    if (anchoPantalla < 768) {
+      // Celular: Pasamos a 1 sola página para que sea legible
+      const anchoCelular = anchoPantalla - 30; // 30px de margen
+      const altoCelular = anchoCelular * 1.41; // Proporción de un A4/PDF
+      
+      $(flipBook).turn('display', 'single');
+      $(flipBook).turn('size', anchoCelular, altoCelular);
+    } else {
+      // Computadora: 2 páginas y tamaño normal (ejemplo: 800x560)
+      $(flipBook).turn('display', 'double');
+      $(flipBook).turn('size', 800, 560); // Ajusta estos números a tu tamaño original
+    }
+  } 
+  // -- OPCIÓN B: Si usas otra librería o visor propio --
+  else {
+    if (anchoPantalla < 768) {
+      // Calculamos la escala exacta según la pantalla de cada celular
+      // Asumimos que tu libro original mide unos 800px de ancho
+      const escala = (anchoPantalla - 20) / 800; 
+      zoomWrap.style.transform = `scale(${escala})`;
+      zoomWrap.style.transformOrigin = 'top center';
+    } else {
+      // Computadora: Escala normal
+      zoomWrap.style.transform = 'scale(1)';
+    }
+  }
+}
+
+// Ejecutar la función si el usuario gira el celular o cambia el tamaño de ventana
+window.addEventListener('resize', hacerResponsiveElLibro);
